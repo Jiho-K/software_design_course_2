@@ -1,0 +1,144 @@
+/*
+*  File Name: mystring_B.h
+*  Assignment: ENSF 480 - Lab 1 - Exercise B and C
+*  Completed by: Jiho Kim, Garth Slaney
+*  Submission Date: Sept 24, 2020
+*/
+#include <iostream>
+#include <string>
+using namespace std;
+
+#ifndef MYSTRING_H
+#define MYSTRING_H
+
+class Mystring {
+
+public:
+  Mystring();
+  // PROMISES: Empty string object is created.
+
+  Mystring(int n); 
+  // PROMISES: Creates an empty string with a total capacity of n.
+  //           In other words, dynamically allocates n elements for
+  //           charsM,sets the lengthM to zero, and fills the first 
+  //           element of charsM with '\0'. 
+
+  Mystring(const char *s); 
+  // REQUIRES: s points to first char of a built-in string.
+  // REQUIRES: Mystring object is created by copying chars from s.
+
+  ~Mystring(); // destructor
+
+  Mystring(const Mystring& source); // copy constructor
+
+  Mystring& operator =(const Mystring& rhs); // assignment operator
+  // REQUIRES: rhs is reference to a Mystring as a source
+  // PROMISES: to make this-object (object that this is pointing to, as  a copy 
+  //           of rhs.
+	
+	//bool operator >= (const Mystring& left, const Mystring& right); // assignment operator
+	// REQUIRES: S is reference to a Mystring as a source
+	// PROMISES: to return true if left side is greater than or equal to
+	//					 the right side lexicographically else return false.
+
+  int length() const;
+  // PROMISES: Return value is number of chars in charsM.
+
+  char get_char(int pos) const;
+  // REQUIRES: pos >= 0 && pos < length()
+  // PROMISES:
+  // Return value is char at position pos.
+  // (The first char in the charsM is at position 0.)
+
+  const char * c_str() const;
+  // PROMISES:
+  //   Return value points to first char in built-in string
+  //   containing the chars of the string object.
+
+  void set_char(int pos, char c);
+  // REQUIRES: pos >= 0 && pos < length(), c != '\0'
+  // PROMISES: Character at position pos is set equal to c.
+
+  Mystring& append(const Mystring& other);
+
+  // PROMISES: extends the size of charsM to allow concatenate other.charsM to 
+  //           to the end of charsM. For example if charsM points to "ABC", and 
+  //          other.charsM points to XYZ, extends charsM to "ABCXYZ".
+  //
+
+  void set_str(char* s);
+  // REQUIRES: s is a valid C++ string of characters (a built-in string)
+  // PROMISES:copys s into charsM, if the length of s is less than or equal lengthM.
+  //          Othrewise, extends the size of the charsM to s.lengthM+1, and copies 
+  //          s into the charsM.
+    
+  int isGreaterThan( const Mystring& s)const;
+  // REQUIRES: s refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is greater than s.charsM.
+
+  int isLessThan (const Mystring& s)const;
+  // REQUIRES: s refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is less than s.charsM.
+
+  int isEqual (const Mystring& s)const;
+  // REQUIRES: s refers to an object of class Mystring
+  // PROMISES: retruns true if charsM equal s.charsM.
+
+  int isNotEqual(const Mystring& s)const;
+  // REQUIRES: s refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is not equal s.charsM.
+
+	friend ostream& operator << (ostream& os, const Mystring& S);
+	// REQUIRES: S refers to an object of class Mystring, os refers
+	// to the out stream
+  // PROMISES: used for printing output onto console
+	
+	bool operator >= (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is greater than or equal
+	// to s.charsM
+	
+	bool operator <= (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is less than or equal
+	// to s.charsM
+	
+	bool operator != (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is not equal to s.charsM
+	
+	bool operator > (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is greater than s.charsM
+	
+	bool operator < (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is less than s.charsM
+	
+	bool operator == (const Mystring& a) const;
+	// REQUIRES: a refers to an object of class Mystring
+  // PROMISES: retruns true if charsM is equal to s.charsM
+	
+	char& operator [] (const int index) const;
+	// REQUIRES: index of the string
+  // PROMISES: returns the character at the index (of the string)
+
+ private:
+
+  int lengthM; // the string length - number of characters excluding \0
+  char* charsM; // a pointer to the beginning of an array of characters, allocated dynamically.
+  void memory_check(char* s);
+  // PROMISES: if s points to NULL terminates the program.
+};
+#endif
+
+
+
+
+
+
+
+
+
+
+
